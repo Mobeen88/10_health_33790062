@@ -35,8 +35,7 @@ CREATE TABLE IF NOT EXISTS audit_log (
     attempt_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-/*
+
 # Create the application user
 CREATE USER IF NOT EXISTS 'health_app'@'localhost' IDENTIFIED BY 'qwertyuiop'; 
 GRANT ALL PRIVILEGES ON health.* TO 'health_app'@'localhost';
-*/

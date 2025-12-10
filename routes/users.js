@@ -4,7 +4,7 @@ const router = express.Router()
 const bcrypt = require("bcrypt")
 const saltRounds = 10
 
-const { check, validationResult } = require('express-validator')
+const {check, validationResult} = require('express-validator')
 
 //Middleware: redirect to login if not logged in
 const redirectLogin = (req, res, next) => {
@@ -18,17 +18,15 @@ const redirectLogin = (req, res, next) => {
 //Register
 router.get('/register', (req, res) => {
     res.render('register', {
-        errors: [],
-        old: { first: '', last: '', email: '', username: '' },
-        message: ""
-    });
+        errors: [], old: { first: "", last: "", email: "", username: ""}, message: ""}
+    );
 });
 
 router.post('/registered', 
     [
         check('email').isEmail().withMessage("Enter a valid email"), 
-        check('username').isLength({ min: 5, max: 20}).withMessage("Username must be 5-20 characters"),
-        check('password').isLength({ min:8}).withMessage("Password must be at least 8 characters"),
+        check('username').isLength({min: 5, max: 20}).withMessage("Username must be 5-20 characters"),
+        check('password').isLength({min:8}).withMessage("Password must be at least 8 characters"),
         check('first').notEmpty().withMessage('First name required'),
         check('last').notEmpty().withMessage('Last name required')
     ], 
@@ -44,12 +42,13 @@ router.post('/registered',
     if (!errors.isEmpty()) {
         return res.render('register', {
             errors: errors.array(),
-            old: {
+            old:{
                 first: req.body.first,
                 last: req.body.last,
                 email: req.body.email,
                 username: req.body.username
-            }
+            },
+            message: ""
         });
     }
 
@@ -58,17 +57,18 @@ router.post('/registered',
     //Check if username exists
     const checkSql = "SELECT * FROM users WHERE username = ?";
     db.query(checkSql, [req.body.username], (err, result) => {
-        if (err) return next(err);
+        if(err) return next(err);
 
-        if (result.length > 0) {
-            return res.render('register', {
-                errors: [{ msg: "Username already exists" }],
-                old: {
+        if(result.length > 0) {
+            return res.render('register',{
+                errors:[{ msg: "Username already exists" }],
+                old:{
                     first: req.body.first,
                     last: req.body.last,
                     email: req.body.email,
                     username: req.body.username
-                }
+                },
+                message: ""
             });
         }
 
@@ -94,13 +94,13 @@ router.get("/list", redirectLogin, (req, res, next) => {
     const sqlquery = "SELECT id, username, first_name, last_name, email, created_at FROM users";
     db.query(sqlquery, (err, result) => {
         if(err) return next(err);
-        res.render("listusers", { users: result });
+        res.render("listusers", {message: "", users: result});
     });
 });
 
 //Login
 router.get("/login", (req, res) => {
-    res.render("login", { errors: [] }); // always pass errors
+    res.render("login", {errors: [], message: ""}); 
 });
 
 router.post("/loggedin", (req, res, next) => {
@@ -110,9 +110,9 @@ router.post("/loggedin", (req, res, next) => {
     db.query(sqlquery, [username], (err, result) => {
         if(err) return next(err);
 
-        if(result.length === 0) {
+        if(result.length == 0) {
             logLoginAttempt(username, false, req);
-            return res.render('login', { errors: [{ msg: "Username not found" }] });
+            return res.render('login', { errors: [], message: "Username not found" });
         }
 
         const user = result[0];
@@ -125,13 +125,13 @@ router.post("/loggedin", (req, res, next) => {
             if(match) {
                 req.session.userId = username;
                 logLoginAttempt(username, true, req);
-
+                
                 const redirectTo = req.session.redirectTo || '/users/list';
                 delete req.session.redirectTo;
                 return res.redirect(redirectTo);
-            } else {
+            }else {
                 logLoginAttempt(username, false, req);
-                return res.render('login', { errors: [{ msg: "Incorrect password" }] });
+                return res.render('login', { errors: [], message: "Incorrect password"});
             }
         });
     });
