@@ -1,0 +1,272 @@
+/* ---------------------------- */
+/* General Reset & Typography   */
+/* ---------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    background-color: #ECE3CE;
+    color: #3A4D39;
+    text-align: center;
+    line-height: 1.6;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 500;
+    margin: 30px 0 40px;
+}
+
+h2 {
+    font-weight: 500;
+    margin: 20px 0 10px;
+}
+
+p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.list {
+    background-color: #AFC8AD;
+    color: #1B3C53;
+    margin: 15px auto;
+    padding: 20px 40px;
+    border-radius: 8px;
+    max-width: 400px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+u {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+}
+
+/* ---------------------------- */
+/* Forms                        */
+/* ---------------------------- */
+form {
+    background-color: #739072;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    color: #FCF9EA;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+input[type="submit"] {
+    background-color: #FCF9EA;
+    color: #1B3C53;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #e8e3b8;
+}
+
+/* ---------------------------- */
+/* Navigation & Header          */
+/* ---------------------------- */
+header {
+    background-color: #739072;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+nav ul{
+    list-style-type: none;
+    text-align: center;
+}
+
+nav li{
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 1.5rem;
+}
+
+nav a{
+    text-decoration: none;
+    color: #222831;
+    font-weight: bold;
+}
+
+nav a:hover{
+    text-decoration: underline;
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: #3A4D39;
+    width: 100%;
+    margin: 10px 0 30px;
+}
+
+/* ---------------------------- */
+/* Cards (Workouts / Shops)     */
+/* ---------------------------- */
+.workoutGrid,
+.shopGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.workoutCard,
+.shopCard {
+    background-color: #739072;
+    color: #FCF9EA;
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.workoutCard:hover,
+.shopCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+}
+
+.workoutCard h3,
+.shopCard h3 {
+    margin: 0 0 10px 0;
+}
+
+.workoutCard p,
+.shopCard p {
+    margin: 5px 0;
+}
+
+.workoutWrap,
+.shopWrap {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+}
+
+.workoutList,
+.shopList {
+    background-color: #FCF9EA;
+    color: #3A4D39;
+    border-radius: 0 0 12px 12px;
+    padding: 15px 20px;
+    width: 100%;
+    margin-top: 0;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+}
+
+.workoutCard:hover + .workoutList,
+.shopCard:hover + .shopList {
+    transform: scaleY(1);
+}
+
+.workoutList ul,
+.shopList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.workoutList li,
+.shopList li {
+    padding: 5px 0;
+    font-size: 1rem;
+    border-bottom: 1px dashed #ccc;
+}
+
+.workoutList li:last-child,
+.shopList li:last-child {
+    border-bottom: none;
+}
+
+.workoutCard img,
+.shopCard img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+/* ---------------------------- */
+/* Dropdown Menu                */
+/* ---------------------------- */
+nav li.dropdown {
+    position: relative;
+}
+
+nav li.dropdown ul.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #739072;
+    min-width: 150px;
+    border-radius: 6px;
+    padding: 5px 0;
+    z-index: 1000;
+}
+
+nav li.dropdown ul.dropdown-menu li a {
+    display: block;
+    padding: 8px 15px;
+    color: #FCF9EA;
+    font-size: 1rem;
+    transition: 0.2s ease;
+}
+
+nav li.dropdown ul.dropdown-menu li a:hover {
+    background-color: #AFC8AD;
+    color: #1B3C53;
+}
+
+nav li.dropdown:hover ul.dropdown-menu {
+    display: block;
+}

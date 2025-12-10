@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%=shopData.shopName%></title>    
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <%- include("header") %>
+    <h1>Search Workouts</h1>
+
+    <form method="POST" action="/search">
+      <p>Search term: <input type="text" name="term" required /></p>
+      <input type="submit" value="Search" />
+    </form>
+
+    <% if (results && results.length > 0) { %>
+      <h2>Results:</h2>
+      <table border="1" style="margin:auto;">
+        <tr>
+          <th>ID</th>
+          <th>User</th>
+          <th>Workout Name</th>
+          <th>Calories</th>
+          <th>Date</th>
+        </tr>
+        <% results.forEach(function(workout) { %>
+          <tr>
+            <td><%= workout.id %></td>
+            <td><%= workout.username %></td>
+            <td><%= workout.workout_name %></td>
+            <td><%= workout.calories %></td>
+            <td><%= workout.workout_date.toISOString().slice(0,10) %></td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } %>
+
+    <p><a href="/">Back to Home</a></p>
+  </body>
+</html>

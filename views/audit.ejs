@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%=shopData.shopName%></title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <%- include("header") %>
+    <h1>Login Audit Log</h1>
+
+    <table border="1" style="margin:auto;">
+      <tr>
+        <th>Username</th>
+        <th>Success</th>
+        <th>IP Address</th>
+        <th>User Agent</th>
+        <th>Attempt Time</th>
+      </tr>
+      <% logs.forEach(function(log) { %>
+        <tr>
+          <td><%= log.username %></td>
+          <td><%= log.success %></td>
+          <td><%= log.ip_address %></td>
+          <td><%= log.user_agent %></td>
+          <td><%= log.attempt_time %></td>
+        </tr>
+      <% }) %>
+    </table>
+
+    <p><a href="/">Back to Home</a></p>
+  </body>
+</html>
