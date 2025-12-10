@@ -1,13 +1,11 @@
-/* ---------------------------- */
-/* General Reset & Typography   */
-/* ---------------------------- */
-* {
+/* General */
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
+body{
     font-family: 'Poppins', 'Segoe UI', sans-serif;
     display: flex;
     flex-direction: column;
@@ -20,29 +18,29 @@ body {
     line-height: 1.6;
 }
 
-h1 {
+h1{
     font-size: 3.5rem;
     font-weight: 500;
     margin: 30px 0 40px;
 }
 
-h2 {
+h2{
     font-weight: 500;
     margin: 20px 0 10px;
 }
 
-p {
+p{
     font-size: 1.2rem;
     font-weight: 500;
     margin: 10px 0;
 }
 
-ul {
+ul{
     list-style: none;
     padding: 0;
 }
 
-.list {
+.list{
     background-color: #AFC8AD;
     color: #1B3C53;
     margin: 15px auto;
@@ -53,16 +51,14 @@ ul {
     font-weight: 500;
 }
 
-u {
+u{
     text-decoration: underline;
     text-decoration-thickness: 3px;
     text-underline-offset: 6px;
 }
 
-/* ---------------------------- */
-/* Forms                        */
-/* ---------------------------- */
-form {
+/* Forms */
+form{
     background-color: #739072;
     padding: 25px;
     border-radius: 12px;
@@ -75,7 +71,7 @@ form {
 input[type="text"],
 input[type="email"],
 input[type="number"],
-input[type="password"] {
+input[type="password"]{
     width: 100%;
     padding: 10px;
     margin: 8px 0 15px 0;
@@ -83,7 +79,7 @@ input[type="password"] {
     border-radius: 6px;
 }
 
-input[type="submit"] {
+input[type="submit"]{
     background-color: #FCF9EA;
     color: #1B3C53;
     border: none;
@@ -94,14 +90,12 @@ input[type="submit"] {
     transition: 0.3s ease;
 }
 
-input[type="submit"]:hover {
+input[type="submit"]:hover{
     background-color: #e8e3b8;
 }
 
-/* ---------------------------- */
-/* Navigation & Header          */
-/* ---------------------------- */
-header {
+/* Navigation & Header */
+header{
     background-color: #739072;
     width: 100%;
     padding: 15px;
@@ -129,7 +123,7 @@ nav a:hover{
     text-decoration: underline;
 }
 
-hr {
+hr{
     border: none;
     height: 3px;
     background-color: #3A4D39;
@@ -137,11 +131,8 @@ hr {
     margin: 10px 0 30px;
 }
 
-/* ---------------------------- */
-/* Cards (Workouts / Shops)     */
-/* ---------------------------- */
-.workoutGrid,
-.shopGrid {
+/* Workout Cards     */
+.workoutGrid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
@@ -150,8 +141,7 @@ hr {
     padding: 10px;
 }
 
-.workoutCard,
-.shopCard {
+.workoutCard{
     background-color: #739072;
     color: #FCF9EA;
     border-radius: 20px 20px 0 0;
@@ -164,32 +154,27 @@ hr {
     align-items: center;
 }
 
-.workoutCard:hover,
-.shopCard:hover {
+.workoutCard:hover{
     transform: translateY(-5px);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
-.workoutCard h3,
-.shopCard h3 {
+.workoutCard h3{
     margin: 0 0 10px 0;
 }
 
-.workoutCard p,
-.shopCard p {
+.workoutCard p{
     margin: 5px 0;
 }
 
-.workoutWrap,
-.shopWrap {
+.workoutWrap{
     display: flex;
     flex-direction: column;
     align-items: stretch;
     position: relative;
 }
 
-.workoutList,
-.shopList {
+.workoutList{
     background-color: #FCF9EA;
     color: #3A4D39;
     border-radius: 0 0 12px 12px;
@@ -202,32 +187,27 @@ hr {
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
 }
 
-.workoutCard:hover + .workoutList,
-.shopCard:hover + .shopList {
+.workoutCard:hover + .workoutList{
     transform: scaleY(1);
 }
 
-.workoutList ul,
-.shopList ul {
+.workoutList ul{
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.workoutList li,
-.shopList li {
+.workoutList li{
     padding: 5px 0;
     font-size: 1rem;
     border-bottom: 1px dashed #ccc;
 }
 
-.workoutList li:last-child,
-.shopList li:last-child {
+.workoutList li:last-child{
     border-bottom: none;
 }
 
-.workoutCard img,
-.shopCard img {
+.workoutCard img{
     width: 120px;
     height: 120px;
     border-radius: 10px;
@@ -235,14 +215,12 @@ hr {
     margin-bottom: 10px;
 }
 
-/* ---------------------------- */
-/* Dropdown Menu                */
-/* ---------------------------- */
-nav li.dropdown {
+/* Dropdown Menu */
+nav li.dropdown{
     position: relative;
 }
 
-nav li.dropdown ul.dropdown-menu {
+nav li.dropdown ul.dropdown-menu{
     display: none;
     position: absolute;
     top: 100%;
@@ -254,7 +232,7 @@ nav li.dropdown ul.dropdown-menu {
     z-index: 1000;
 }
 
-nav li.dropdown ul.dropdown-menu li a {
+nav li.dropdown ul.dropdown-menu li a{
     display: block;
     padding: 8px 15px;
     color: #FCF9EA;
@@ -262,11 +240,11 @@ nav li.dropdown ul.dropdown-menu li a {
     transition: 0.2s ease;
 }
 
-nav li.dropdown ul.dropdown-menu li a:hover {
+nav li.dropdown ul.dropdown-menu li a:hover{
     background-color: #AFC8AD;
     color: #1B3C53;
 }
 
-nav li.dropdown:hover ul.dropdown-menu {
+nav li.dropdown:hover ul.dropdown-menu{
     display: block;
 }
