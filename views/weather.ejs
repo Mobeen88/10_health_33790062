@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <title>Weather | <%= shopData.shopName %></title>
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+</head>
+
+<body>
+  <%- include("header") %>
+
+  <h1>Weather Checker</h1>
+
+  <form action="/weather/results" method="post">
+    <label for="city"><strong>City:</strong></label>
+    <input id="city" name="city" type="text" value="<%= city || "" %>" required />
+    <input type="submit" value="Check Weather" />
+  </form>
+
+  <% if (error) { %>
+    <div class="weatherBox errorBox">
+      <strong>Error:</strong> <%= error %>
+    </div>
+  <% } %>
+
+  <% if (weather) { %>
+    <div class="weatherBox">
+      <h2>Weather in <%= weather.name %></h2>
+
+      <p><strong>Temperature:</strong> <%= weather.main.temp %>°C</p>
+      <p><strong>Humidity:</strong> <%= weather.main.humidity %>%</p>
+      <p><strong>Wind Speed:</strong> <%= weather.wind?.speed || "N/A" %> m/s</p>
+      <p><strong>Condition:</strong> <%= weather.weather?.[0]?.description || "N/A" %></p>
+
+      <div class="runAdvice">
+        <h3>Running Conditions?</h3>
+        <p><%= runningMessage %></p>
+      </div>
+    </div>
+  <% } %>
+
+</body>
+</html>

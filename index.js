@@ -62,6 +62,10 @@ app.use("/users", usersRoutes);
 const workoutRoutes = require("./routes/workout");
 app.use("/workout", workoutRoutes);
 
+// Load the route handlers for /weather
+const weatherRoutes = require('./routes/weather')
+app.use('/weather', weatherRoutes)
+
 //Start server
 app.listen(port, () => {
     console.log(`Health App running on port ${port}`);

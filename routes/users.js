@@ -163,7 +163,7 @@ router.get("/audit", redirectLogin, (req, res, next) => {
     const sqlquery = "SELECT username, attempt_time, success, ip_address, user_agent FROM audit_log ORDER BY attempt_time DESC";
     db.query(sqlquery, (err, result) => {
         if(err) return next(err);
-        res.render("audit", { auditLogs: result });
+        res.render("audit", {logs: result});
     });
 });
 

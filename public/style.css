@@ -292,3 +292,26 @@ table tr:nth-child(even){
 table tr:hover{
     background-color: #d1d8c0;
 }
+
+/* Weather */
+.weatherBox{
+  background-color: #AFC8AD;
+  color: #1B3C53;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  max-width: 450px;
+  margin: 20px auto;
+  font-size: 1.2rem;
+}
+
+.errorBox{
+  background-color: #FFBFBF;
+  border: 2px solid #FF8A8A;
+}
+
+.runAdvice{
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 2px solid #3A4D39;
+}
