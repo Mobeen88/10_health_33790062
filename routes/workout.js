@@ -5,7 +5,7 @@ const router = express.Router();
 function requireLogin(req, res, next) {
     if (!req.session.userId) {
         req.session.redirectTo = req.originalUrl;
-        return res.redirect("/users/login");
+        return res.redirect("./login");
     }
     next();
 }
@@ -35,7 +35,7 @@ router.post("/add", requireLogin, (req, res) => {
     const sql = "INSERT INTO workouts (user_id, workout_type, duration, calories, workout_date) VALUES (?,?,?,?,?)";
     global.db.query(sql, [req.session.userId, workout_type, duration, calories, workout_date], (err) => {
         if(err) throw err;
-        res.redirect("/workout/log");
+        res.redirect("./log");
     });
 });
 
@@ -44,7 +44,7 @@ router.get("/edit/:id", requireLogin, (req, res) => {
     const sql = "SELECT * FROM workouts WHERE id=? AND user_id=?";
     global.db.query(sql, [req.params.id, req.session.userId], (err, results) => {
         if(err) throw err;
-        if(results.length == 0) return res.redirect("/workout/log");
+        if(results.length == 0) return res.redirect("./log");
         res.render("editworkout", { workout: results[0], message: null });
     });
 });
@@ -54,7 +54,7 @@ router.post("/edit/:id", requireLogin, (req, res) => {
     const sql = "UPDATE workouts SET workout_type=?, duration=?, calories=?, workout_date=? WHERE id=? AND user_id=?";
     global.db.query(sql, [workout_type, duration, calories, workout_date, req.params.id, req.session.userId], (err) => {
         if(err) throw err;
-        res.redirect("/workout/log");
+        res.redirect("./log");
     });
 });
 
@@ -63,7 +63,7 @@ router.get("/delete/:id", requireLogin, (req, res) => {
     const sql = "DELETE FROM workouts WHERE id=? AND user_id=?";
     global.db.query(sql, [req.params.id, req.session.userId], (err) => {
         if(err) throw err;
-        res.redirect("/workout/log");
+        res.redirect("./log");
     });
 });
 

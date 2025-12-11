@@ -62,7 +62,7 @@ const usersRoutes = require("./routes/users");
 app.use("/users", usersRoutes);
 
 const workoutRoutes = require("./routes/workout");
-app.use("/usr/:id/workout", workoutRoutes);
+app.use(`${basePath}/workout`, workoutRoutes);
 
 // Load the route handlers for /weather
 const weatherRoutes = require('./routes/weather')
