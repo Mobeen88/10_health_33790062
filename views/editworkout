@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= shopData.shopName %></title>    
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <%- include("header") %>
+
+    <h1>Edit Workout</h1>
+
+    <% if (message) { %>
+      <p style="color: red;"><%= message %></p>
+    <% } %>
+
+    <form action="/workouts/edit/<%= workout.id %>" method="POST">
+      <p>Workout Type: <input type="text" name="workout_type" value="<%= workout.workout_type %>" required /></p>
+      <p>Duration (minutes): <input type="number" name="duration" value="<%= workout.duration %>" required /></p>
+      <p>Calories burned: <input type="number" name="calories" value="<%= workout.calories %>" required /></p>
+      <p>Date: <input type="date" name="workout_date" value="<%= workout.workout_date.toISOString().split('T')[0] %>" required /></p>
+      <input type="submit" value="Update Workout" />
+    </form>
+
+    <p><a href="/workouts/log">Back to Workout Log</a></p>
+  </body>
+</html>

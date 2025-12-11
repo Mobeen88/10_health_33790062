@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= shopData.shopName %></title>    
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <%- include("header") %>
+
+    <h1>Search Workouts</h1>
+
+    <form method="POST" action="/workouts/search">
+      <p>Workout Type: <input type="text" name="workout_type" /></p>
+      <p>Min Calories: <input type="number" name="min_cal" /></p>
+      <p>Max Calories: <input type="number" name="max_cal" /></p>
+      <input type="submit" value="Search" />
+    </form>
+
+    <% if (workouts && workouts.length > 0) { %>
+      <h2>Results:</h2>
+      <table class="workoutTable">
+        <tr>
+          <th>Type</th>
+          <th>Duration</th>
+          <th>Calories</th>
+          <th>Date</th>
+        </tr>
+        <% workouts.forEach(function(w) { %>
+          <tr>
+            <td><%= w.workout_type %></td>
+            <td><%= w.duration %> min</td>
+            <td><%= w.calories %></td>
+            <td><%= w.workout_date.toISOString().split('T')[0] %></td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } %>
+
+    <p><a href="/workouts/log">Back to Workout Log</a></p>
+  </body>
+</html>

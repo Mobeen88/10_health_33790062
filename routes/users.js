@@ -26,7 +26,7 @@ router.post('/registered',
     [
         check('email').isEmail().withMessage("Enter a valid email"), 
         check('username').isLength({min: 5, max: 20}).withMessage("Username must be 5-20 characters"),
-        check('password').isLength({min:8}).withMessage("Password must be at least 8 characters"),
+        check('password').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/).withMessage("Password must be at least 8 characters long and include at least one uppercase, one lowercase, one number, and one special character"),
         check('first').notEmpty().withMessage('First name required'),
         check('last').notEmpty().withMessage('Last name required')
     ], 
@@ -167,4 +167,5 @@ router.get("/audit", redirectLogin, (req, res, next) => {
     });
 });
 
+//Export the router object so index.js can access it
 module.exports = router;

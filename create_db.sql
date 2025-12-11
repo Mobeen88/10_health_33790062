@@ -17,12 +17,15 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 # Create workouts table
-CREATE TABLE IF NOT EXISTS workouts (
+CREATE TABLE workouts (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
-    workout_name VARCHAR(100) NOT NULL,
+    user_id VARCHAR(50) NOT NULL,
+    workout_type VARCHAR(100) NOT NULL,
+    duration INT NOT NULL,
     calories INT NOT NULL,
-    workout_date DATE DEFAULT CURRENT_DATE
+    workout_date DATE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(username)
 );
 
 # Audit log table (optional but in your example)

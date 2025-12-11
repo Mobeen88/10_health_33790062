@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= shopData.shopName %></title>    
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <%- include("header") %>
+
+    <h1>Your Workout Log</h1>
+
+    <% if (workouts && workouts.length > 0) { %>
+      <table class="workoutTable">
+        <tr>
+          <th>Type</th>
+          <th>Duration</th>
+          <th>Calories</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+        <% workouts.forEach(function(w) { %>
+          <tr>
+            <td><%= w.workout_type %></td>
+            <td><%= w.duration %> min</td>
+            <td><%= w.calories %></td>
+            <td><%= w.workout_date.toISOString().split('T')[0] %></td>
+            <td>
+              <a href="/workouts/edit/<%= w.id %>">Edit</a> |
+              <a href="/workouts/delete/<%= w.id %>">Delete</a>
+            </td>
+          </tr>
+        <% }) %>
+      </table>
+    <% } else { %>
+      <p>No workouts logged yet.</p>
+    <% } %>
+
+    <p><a href="/workouts/add">Add New Workout</a></p>
+  </body>
+</html>

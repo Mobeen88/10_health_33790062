@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%= shopData.shopName %></title>    
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <%- include("header") %>
+
+    <h1>Add Workout</h1>
+
+    <% if (message) { %>
+      <p style="color: red;"><%= message %></p>
+    <% } %>
+
+    <form action="/workouts/add" method="POST">
+      <p>Workout Type: <input type="text" name="workout_type" required /></p>
+      <p>Duration (minutes): <input type="number" name="duration" required /></p>
+      <p>Calories burned: <input type="number" name="calories" required /></p>
+      <p>Date: <input type="date" name="workout_date" required /></p>
+      <input type="submit" value="Add Workout" />
+    </form>
+
+    <p><a href="/workouts/log">Back to Workout Log</a></p>
+  </body>
+</html>

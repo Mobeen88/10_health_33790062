@@ -59,6 +59,9 @@ app.use("/", mainRoutes);
 const usersRoutes = require("./routes/users");
 app.use("/users", usersRoutes);
 
+const workoutRoutes = require("./routes/workout");
+app.use("/workout", workoutRoutes);
+
 //Start server
 app.listen(port, () => {
     console.log(`Health App running on port ${port}`);
