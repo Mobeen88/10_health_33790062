@@ -4,8 +4,8 @@ const router = express.Router();
 //Middleware to ensure user is logged in
 function requireLogin(req, res, next) {
     if (!req.session.userId) {
-        req.session.redirectTo = req.originalUrl;
-        return res.redirect("/users/login");
+        // Instead of redirecting, render a message
+        return res.render("login", { message: "You must be logged in to access this page.", errors: [] });
     }
     next();
 }
@@ -15,6 +15,8 @@ router.get("/log", requireLogin, (req, res) => {
     const sql = "SELECT * FROM workouts WHERE user_id=? ORDER BY workout_date DESC";
     global.db.query(sql, [req.session.userId], (err, results) => {
         if (err) throw err;
+        // Convert dates to JS Date objects
+        results = results.map(w => ({ ...w, workout_date: new Date(w.workout_date) }));
         res.render("workoutlog", { workouts: results });
     });
 });
@@ -27,7 +29,6 @@ router.get("/add", requireLogin, (req, res) => {
 router.post("/add", requireLogin, (req, res) => {
     const { workout_type, duration, calories, workout_date } = req.body;
 
-    //Date validation
     const dateObj = new Date(workout_date);
     const year = dateObj.getFullYear();
     if (isNaN(dateObj.getTime()) || year < 1900 || year > 2100) {
@@ -41,13 +42,14 @@ router.post("/add", requireLogin, (req, res) => {
     });
 });
 
-//Edit workout
+// Edit workout
 router.get("/edit/:id", requireLogin, (req, res) => {
     const sql = "SELECT * FROM workouts WHERE id=? AND user_id=?";
     global.db.query(sql, [req.params.id, req.session.userId], (err, results) => {
         if (err) throw err;
-        if (results.length == 0) return res.redirect("/workout/log");
-        res.render("editworkout", { workout: results[0], message: null });
+        if (results.length === 0) return res.render("workoutlog", { workouts: [], message: "Workout not found." });
+        const workout = { ...results[0], workout_date: new Date(results[0].workout_date) };
+        res.render("editworkout", { workout, message: null });
     });
 });
 
@@ -60,7 +62,7 @@ router.post("/edit/:id", requireLogin, (req, res) => {
     });
 });
 
-//Delete workout
+// Delete workout
 router.get("/delete/:id", requireLogin, (req, res) => {
     const sql = "DELETE FROM workouts WHERE id=? AND user_id=?";
     global.db.query(sql, [req.params.id, req.session.userId], (err) => {
@@ -69,7 +71,7 @@ router.get("/delete/:id", requireLogin, (req, res) => {
     });
 });
 
-//Search workouts
+// Search workouts
 router.get("/search", requireLogin, (req, res) => {
     res.render("searchworkout", { workouts: null });
 });
@@ -95,9 +97,9 @@ router.post("/search", requireLogin, (req, res) => {
 
     global.db.query(sql, params, (err, results) => {
         if (err) throw err;
+        results = results.map(w => ({ ...w, workout_date: new Date(w.workout_date) }));
         res.render("searchworkout", { workouts: results });
     });
 });
 
-//Export the router object so index.js can access it
 module.exports = router;
