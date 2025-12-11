@@ -6,16 +6,13 @@
   </head>
   <body>
     <%- include("header") %>
-
     <h1>Search Workouts</h1>
-
     <form method="POST" action="/workout/search">
       <p>Workout Type: <input type="text" name="workout_type" /></p>
       <p>Min Calories: <input type="number" name="min_cal" /></p>
       <p>Max Calories: <input type="number" name="max_cal" /></p>
       <input type="submit" value="Search" />
     </form>
-
     <% if (workouts && workouts.length > 0) { %>
       <h2>Results:</h2>
       <table class="workoutTable">

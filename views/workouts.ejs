@@ -7,11 +7,9 @@
   <body>
     <%- include("header") %>
     <h1>All Workouts</h1>
-
     <table border="1" style="margin:auto;">
       <tr>
         <th>ID</th>
-        <th>User</th>
         <th>Workout Name</th>
         <th>Calories</th>
         <th>Date</th>
@@ -19,8 +17,7 @@
       <% workouts.forEach(function(workout) { %>
         <tr>
           <td><%= workout.id %></td>
-          <td><%= workout.username %></td>
-          <td><%= workout.workout_name %></td>
+          <td><%= workout.workout_type %></td>
           <td><%= workout.calories %></td>
           <td><%= workout.workout_date.toISOString().slice(0,10) %></td>
         </tr>

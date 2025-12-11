@@ -7,12 +7,10 @@
   <body>
     <%- include("header") %>
     <h1>Search Workouts</h1>
-
     <form method="POST" action="/search">
       <p>Search term: <input type="text" name="term" required /></p>
       <input type="submit" value="Search" />
     </form>
-
     <% if (results && results.length > 0) { %>
       <h2>Results:</h2>
       <table border="1" style="margin:auto;">

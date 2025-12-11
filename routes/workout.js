@@ -17,6 +17,16 @@ router.get("/add", requireLogin, (req, res) => {
 //Add workout post
 router.post("/add", requireLogin, (req, res) => {
     const {workout_type, duration, calories, workout_date} = req.body;
+    const dateObj = new Date(workout_date);
+    const year = dateObj.getFullYear();
+    const isValidDate = !isNaN(dateObj.getTime()) && year >= 1900 && year <= 2100;;
+
+    if (!isValidDate) {
+        return res.render("addworkout", { 
+            message: "Invalid date format. Please enter a real date." 
+        });
+    }
+
 
     const sql = `
         INSERT INTO workouts (user_id, workout_type, duration, calories, workout_date)
@@ -52,6 +62,17 @@ router.get("/edit/:id", requireLogin, (req, res) => {
 //Edit workout Post
 router.post("/edit/:id", requireLogin, (req, res) => {
     const {workout_type, duration, calories, workout_date} = req.body;
+
+    //Ensures valid date
+    const dateObj = new Date(workout_date);
+    const isValidDate = !isNaN(dateObj.getTime());
+
+    if (!isValidDate) {
+        return res.render("editworkout", { 
+            workout: req.body,
+            message: "Invalid date format."
+        });
+    }
 
     const sql = `
         UPDATE workouts 

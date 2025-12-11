@@ -6,13 +6,10 @@
   </head>
   <body>
     <%- include("header") %>
-
     <h1>Add Workout</h1>
-
     <% if (message) { %>
       <p style="color: red;"><%= message %></p>
     <% } %>
-
     <form action="/workout/add" method="POST">
       <p>Workout Type: <input type="text" name="workout_type" required /></p>
       <p>Duration (minutes): <input type="number" name="duration" required /></p>

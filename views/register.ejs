@@ -7,7 +7,6 @@
   <body>
     <%- include("header") %>
     <h1>Register</h1>
-
     <% if (errors && errors.length > 0) { %>
       <div style="color: red;">
         <ul>
@@ -21,7 +20,6 @@
     <% if (message) { %>
       <p style="color: green;"><%= message %></p>
     <% } %>
-
     <form method="POST" action="/users/registered">
       <p>First Name: <input type="text" name="first" value="<%= old ? old.first : '' %>" /></p>
       <p>Last Name: <input type="text" name="last" value="<%= old ? old.last : '' %>" /></p>

@@ -6,31 +6,28 @@
   </head>
   <body>
     <%- include("header") %>
-
     <h1>Your Workout Log</h1>
-
     <% if (workouts && workouts.length > 0) { %>
-      <table class="workoutTable">
-        <tr>
-          <th>Type</th>
-          <th>Duration</th>
-          <th>Calories</th>
-          <th>Date</th>
-          <th>Actions</th>
-        </tr>
+      <div class="workoutGrid">
         <% workouts.forEach(function(w) { %>
-          <tr>
-            <td><%= w.workout_type %></td>
-            <td><%= w.duration %> min</td>
-            <td><%= w.calories %></td>
-            <td><%= w.workout_date.toISOString().split('T')[0] %></td>
-            <td>
-              <a href="/workouts/edit/<%= w.id %>">Edit</a> |
-              <a href="/workout/delete/<%= w.id %>">Delete</a>
-            </td>
-          </tr>
+          <div class="workoutWrap">
+            <div class="workoutCard">
+              <h3><%= w.workout_type %></h3>
+            </div>
+            <div class="workoutList">
+              <ul>
+                <li><strong>Duration:</strong> <%= w.duration %> min</li>
+                <li><strong>Calories:</strong> <%= w.calories %></li>
+                <li><strong>Date:</strong> <%= w.workout_date.toISOString().split('T')[0] %></li>
+                <li class="workoutActions">
+                  <a href="/workout/edit/<%= w.id %>">Edit</a> |
+                  <a href="/workout/delete/<%= w.id %>">Delete</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         <% }) %>
-      </table>
+      </div>
     <% } else { %>
       <p>No workouts logged yet.</p>
     <% } %>
