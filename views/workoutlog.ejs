@@ -20,8 +20,8 @@
                 <li><strong>Calories:</strong> <%= w.calories %></li>
                 <li><strong>Date:</strong> <%= w.workout_date.toISOString().split('T')[0] %></li>
                 <li class="workoutActions">
-                  <a href="/workout/edit/<%= w.id %>">Edit</a> |
-                  <a href="/workout/delete/<%= w.id %>">Delete</a>
+                  <a href="./workout/edit/<%= w.id %>">Edit</a> |
+                  <a href="./workout/delete/<%= w.id %>">Delete</a>
                 </li>
               </ul>
             </div>

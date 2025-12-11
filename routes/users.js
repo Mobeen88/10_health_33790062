@@ -10,7 +10,7 @@ const {check, validationResult} = require('express-validator')
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId ) {
          req.session.redirectTo = req.originalUrl
-         return res.redirect('/users/login')
+         return res.redirect('./login')
     } 
     next();
 };
@@ -83,7 +83,7 @@ router.post('/registered',
                 if(err) return next(err);
 
                 //Redirects to login page after successful registration
-                res.redirect('/users/login');
+                res.redirect('./login');
             });
         });
     });
@@ -140,9 +140,9 @@ router.post("/loggedin", (req, res, next) => {
 //Logout
 router.get("/logout", redirectLogin, (req, res) => {
     req.session.destroy(err => {
-        if(err) return res.redirect('/users/list');
+        if(err) return res.redirect('./list');
         res.clearCookie('connect.sid');
-        res.redirect('/users/login');
+        res.redirect('./login');
     });
 });
 

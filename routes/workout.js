@@ -4,7 +4,7 @@ const router = express.Router();
 //Middleware to ensure user is logged in
 function requireLogin(req, res, next) {
     if (!req.session.userId) {
-        return res.redirect("/users/login");
+        return res.redirect("./login");
     }
     next();
 }
@@ -27,14 +27,13 @@ router.post("/add", requireLogin, (req, res) => {
         });
     }
 
-
     const sql = `
         INSERT INTO workouts (user_id, workout_type, duration, calories, workout_date)
         VALUES (?, ?, ?, ?, ?)`;
 
     global.db.query(sql, [req.session.userId, workout_type, duration, calories, workout_date], (err) => {
         if (err) throw err;
-        res.redirect("/workout/log");
+        res.redirect("./log");
     });
 });
 
@@ -83,7 +82,7 @@ router.post("/edit/:id", requireLogin, (req, res) => {
         workout_type, duration, calories, workout_date,
         req.params.id, req.session.userId], (err) => {
         if(err) throw err;
-        res.redirect("/workout/log");
+        res.redirect("./log");
     });
 });
 
@@ -92,7 +91,7 @@ router.get("/delete/:id", requireLogin, (req, res) => {
     const sql = `DELETE FROM workouts WHERE id=? AND user_id=?`;
     global.db.query(sql, [req.params.id, req.session.userId], (err) => {
         if(err) throw err;
-        res.redirect("/workout/log");
+        res.redirect("./log");
     });
 });
 

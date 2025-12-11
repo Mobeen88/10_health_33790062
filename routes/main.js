@@ -91,7 +91,5 @@ router.post("/add-workout", function (req, res) {
     });
 });
 
-module.exports = router;
-
 //Export the router object so index.js can access it
 module.exports = router

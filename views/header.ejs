@@ -1,29 +1,29 @@
 <header>
   <nav>
     <ul>
-      <li><a href="/">Home</a></li>
+      <li><a href="">Home</a></li>
       <li><a href="/about">About</a></li>
       <li class="dropdown">
         <a href="/workouts">Workout▼</a>
         <ul class="dropdown-menu">
-          <li><a href="/workout/log">Workout Log</a></li>
-          <li><a href="/workout/add">Add Workout</a></li>
-          <li><a href="/workout/search">Search Workout</a></li>
+          <li><a href="./log">Workout Log</a></li>
+          <li><a href="./add">Add Workout</a></li>
+          <li><a href="./search">Search Workout</a></li>
         </ul>
       <li><a href="/weather">Weather</a></li>
       <li class="dropdown">
-        <a href="/users/list">Users▼</a>
+        <a href="./list">Users▼</a>
         <ul class="dropdown-menu">
-          <li><a href="/users/audit">Audit Log</a></li>
+          <li><a href="./audit">Audit Log</a></li>
         </ul>
       <li class="dropdown">
         <a href="#">Account▼</a>
         <ul class="dropdown-menu">
           <% if (typeof userId !== 'undefined' && userId) { %>
-            <li><a href="/users/logout">Logout</a></li>
+            <li><a href="./logout">Logout</a></li>
           <% } else { %>
-            <li><a href="/users/login">Login</a></li>
-            <li><a href="/users/register">Register</a></li>
+            <li><a href="./login">Login</a></li>
+            <li><a href="./register">Register</a></li>
           <% } %>
         </ul>
       </li>

@@ -16,11 +16,10 @@
         </ul>
       </div>
     <% } %>
-
     <% if (message) { %>
       <p style="color: green;"><%= message %></p>
     <% } %>
-    <form method="POST" action="/users/registered">
+    <form method="POST" action="./users/registered">
       <p>First Name: <input type="text" name="first" value="<%= old ? old.first : '' %>" /></p>
       <p>Last Name: <input type="text" name="last" value="<%= old ? old.last : '' %>" /></p>
       <p>Email: <input type="email" name="email" value="<%= old ? old.email : '' %>" /></p>
