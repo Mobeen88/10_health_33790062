@@ -24,7 +24,7 @@ router.post("/add", requireLogin, (req, res) => {
 
     global.db.query(sql, [req.session.userId, workout_type, duration, calories, workout_date], (err) => {
         if (err) throw err;
-        res.redirect("/workouts/log");
+        res.redirect("/workout/log");
     });
 });
 
@@ -62,7 +62,7 @@ router.post("/edit/:id", requireLogin, (req, res) => {
         workout_type, duration, calories, workout_date,
         req.params.id, req.session.userId], (err) => {
         if(err) throw err;
-        res.redirect("/workouts/log");
+        res.redirect("/workout/log");
     });
 });
 
@@ -71,7 +71,7 @@ router.get("/delete/:id", requireLogin, (req, res) => {
     const sql = `DELETE FROM workouts WHERE id=? AND user_id=?`;
     global.db.query(sql, [req.params.id, req.session.userId], (err) => {
         if(err) throw err;
-        res.redirect("/workouts/log");
+        res.redirect("/workout/log");
     });
 });
 
