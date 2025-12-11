@@ -13,21 +13,19 @@ VALUES (
 );
 
 # Insert sample workouts
-INSERT INTO workouts (user_id, workout_date, type, duration_minutes, calories, notes)
+INSERT INTO workouts (user_id, workout_type, duration, calories, workout_date)
 VALUES
 (
-    (SELECT id FROM users WHERE username = 'gold'),
-    '2025-01-01',
+    'gold',
     'Running',
     30,
     300,
-    'Morning run'
+    '2025-01-01'
 ),
 (
-    (SELECT id FROM users WHERE username = 'gold'),
-    '2025-01-03',
+    'gold',
     'Cycling',
     45,
     450,
-    'Spin class'
+    '2025-01-03'
 );
