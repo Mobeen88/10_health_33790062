@@ -10,7 +10,7 @@
     <% if (message) { %>
       <p style="color: red;"><%= message %></p>
     <% } %>
-    <form method="POST" action="/workout/add">
+    <form method="POST" action="<%= basePath %>/workout/add">
       <p>Workout Type: <input type="text" name="workout_type" required /></p>
       <p>Duration (minutes): <input type="number" name="duration" required /></p>
       <p>Calories burned: <input type="number" name="calories" required /></p>

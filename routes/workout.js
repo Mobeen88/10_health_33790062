@@ -3,7 +3,7 @@ const router = express.Router();
 
 //Middleware to ensure user is logged in
 function requireLogin(req, res, next) {
-    if (!req.session.userId) return res.redirect("/users/login");
+    if (!req.session.userId) return res.redirect(`${req.app.locals.basePath}/users/login`);
     next();
 }
 
@@ -31,22 +31,17 @@ router.post("/add", requireLogin, (req, res) => {
     const sql = "INSERT INTO workouts (user_id, workout_type, duration, calories, workout_date) VALUES (?,?,?,?,?)";
     global.db.query(sql, [req.session.userId, workout_type, duration, calories, workout_date], (err) => {
         if(err) throw err;
-        res.redirect("/workout/log");
+        res.redirect(`${req.app.locals.basePath}/workout/log`);
     });
 });
 
 //Edit workout
 router.get("/edit/:id", requireLogin, (req, res) => {
     const sql = "SELECT * FROM workouts WHERE id=? AND user_id=?";
-    const dateObj = new Date(workout_date); const year = dateObj.getFullYear();
-    const isValidDate = !isNaN(dateObj.getTime()) && year >= 1900 && year <= 2100;
-    if(!isValidDate){
-        return res.render("addworkout", {message: "Invalid date format. Please enter a real date."});
-    }
     global.db.query(sql, [req.params.id, req.session.userId], (err, results) => {
         if(err) throw err;
-        if(results.length == 0) return res.redirect("/workout/log");
-        res.render("editworkout", {workout: results[0], message: null});
+        if(results.length == 0) return res.redirect(`${req.app.locals.basePath}/workout/log`);
+        res.render("editworkout", { workout: results[0], message: null });
     });
 });
 
@@ -64,7 +59,7 @@ router.get("/delete/:id", requireLogin, (req, res) => {
     const sql = "DELETE FROM workouts WHERE id=? AND user_id=?";
     global.db.query(sql, [req.params.id, req.session.userId], (err) => {
         if(err) throw err;
-        res.redirect("/workout/log");
+        res.redirect(`${req.app.locals.basePath}/workout/log`);
     });
 });
 
