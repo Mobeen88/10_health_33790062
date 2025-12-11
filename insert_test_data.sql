@@ -13,7 +13,7 @@ VALUES (
 );
 
 # Insert sample workouts
-INSERT INTO workouts (user_id, date, type, duration_minutes, calories, notes)
+INSERT INTO workouts (user_id, workout_date, type, duration_minutes, calories, notes)
 VALUES
 (
     (SELECT id FROM users WHERE username = 'gold'),
