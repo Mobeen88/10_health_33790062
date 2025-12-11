@@ -19,13 +19,13 @@
     <% if (message) { %>
       <p style="color: green;"><%= message %></p>
     <% } %>
-    <form method="POST" action="./users/registered">
+    <form method="POST" action="/users/registered">
       <p>First Name: <input type="text" name="first" value="<%= old ? old.first : '' %>" /></p>
       <p>Last Name: <input type="text" name="last" value="<%= old ? old.last : '' %>" /></p>
       <p>Email: <input type="email" name="email" value="<%= old ? old.email : '' %>" /></p>
       <p>Username: <input type="text" name="username" value="<%= old ? old.username : '' %>" /></p>
       <p>Password: <input type="password" name="password" /></p>
-      <input type="submit" value="Register" />
+      <input type="submit" value="Register"/>
     </form>
     <br><br>
   </body>

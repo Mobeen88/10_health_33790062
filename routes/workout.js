@@ -4,7 +4,7 @@ const router = express.Router();
 //Middleware to ensure user is logged in
 function requireLogin(req, res, next) {
     if (!req.session.userId) {
-        return res.redirect("./login");
+        return res.redirect("/users/login");
     }
     next();
 }

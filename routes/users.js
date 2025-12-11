@@ -126,7 +126,7 @@ router.post("/loggedin", (req, res, next) => {
                 req.session.userId = username;
                 logLoginAttempt(username, true, req);
                 
-                const redirectTo = req.session.redirectTo || '/users/list';
+                const redirectTo = req.session.redirectTo || './list';
                 delete req.session.redirectTo;
                 return res.redirect(redirectTo);
             }else {
