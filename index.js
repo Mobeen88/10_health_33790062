@@ -40,7 +40,9 @@ app.use((req, res, next) => {
 //Define the application-specific data
 app.locals.shopData = {shopName: "Health App"}
 
-app.locals.basePath = process.env.HEALTH_BASE_PATH || "";
+//app.locals.basePath = process.env.HEALTH_BASE_PATH || "";
+const basePath = process.env.HEALTH_BASE_PATH || '';
+app.locals.basePath = basePath;
 
 //Database connection
 const db = mysql.createPool({
